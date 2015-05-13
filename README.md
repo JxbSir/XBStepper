@@ -3,7 +3,7 @@
 
 -------
 ##支持CocoaPods引入
-`pod 'XBStepper'`
+`pod 'JXBStepper'`
 
 -------
 ##调用接口
