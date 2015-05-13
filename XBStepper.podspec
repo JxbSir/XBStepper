@@ -10,5 +10,5 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/JxbSir/XBStepper.git"  }
   s.source_files = "XBStepper/XBStepper/*.{h,m}"
   s.public_header_files = 'XBStepper/XBStepper/XBStepper.h'
-
+  s.frameworks   = 'UIKit'
 end
