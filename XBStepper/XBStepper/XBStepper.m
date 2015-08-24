@@ -63,6 +63,7 @@
  */
 - (void)AddUIs {
     _txtCount = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    _txtCount.keyboardType = UIKeyboardTypeNumberPad;
     _txtCount.textColor = _myTextColor;
     _txtCount.font = [UIFont systemFontOfSize:16];
     _txtCount.textAlignment = NSTextAlignmentCenter;
