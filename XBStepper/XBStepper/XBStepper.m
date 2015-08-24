@@ -20,7 +20,7 @@
 
 @property(nonatomic,strong)UIView       *vLineFront;
 @property(nonatomic,strong)UIView       *vLineBack;
-@property(nonatomic,strong)UILabel      *lblCount;
+@property(nonatomic,strong)UITextField  *txtCount;
 
 @property(nonatomic,strong)UIButton     *btnDecrease;
 @property(nonatomic,strong)UIButton     *btnIncrease;
@@ -61,11 +61,11 @@
  *  添加UI控件
  */
 - (void)AddUIs {
-    _lblCount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    _lblCount.textColor = _myColor;
-    _lblCount.font = [UIFont systemFontOfSize:16];
-    _lblCount.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:_lblCount];
+    _txtCount = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+    _txtCount.textColor = _myColor;
+    _txtCount.font = [UIFont systemFontOfSize:16];
+    _txtCount.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:_txtCount];
     
     _btnDecrease = [self tempButton:CGRectMake(0, 0, self.frame.size.width / 4, self.frame.size.height) title:@"-"];
     [_btnDecrease addTarget:self action:@selector(btnActionDecease) forControlEvents:UIControlEventTouchUpInside];
@@ -106,7 +106,7 @@
         _valueNow = _valueMin;
         [_btnDecrease setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     }
-    _lblCount.text = [NSString stringWithFormat:@"%d",(int)_valueNow];
+    _txtCount.text = [NSString stringWithFormat:@"%d",(int)_valueNow];
     
     if (_myBlock != NULL) {
         _myBlock(self,_valueNow);
@@ -130,19 +130,19 @@
 }
 
 #pragma mark - 对外函数
-- (void)setBorderColor:(UIColor*)color {
+- (void)setBorderColor:(UIColor*)color textColor:(UIColor*)textColor {
     _myColor = color;
     self.layer.borderColor          = color.CGColor;
     self.vLineFront.backgroundColor = color;
     self.vLineBack.backgroundColor  = color;
     
-    _lblCount.textColor = color;
+    _txtCount.textColor = textColor;
     
     _btnDecrease.layer.borderColor = color.CGColor;
-    [_btnDecrease setTitleColor:color forState:UIControlStateNormal];
+    [_btnDecrease setTitleColor:textColor forState:UIControlStateNormal];
     
     _btnIncrease.layer.borderColor = color.CGColor;
-    [_btnIncrease setTitleColor:color forState:UIControlStateNormal];
+    [_btnIncrease setTitleColor:textColor forState:UIControlStateNormal];
 }
 
 - (void)setMaxValue:(NSInteger)max min:(NSInteger)min now:(NSInteger)now {

@@ -26,7 +26,7 @@ typedef void (^XBStepperCallback)(XBStepper *stepper, NSInteger nowValue);
  *
  *  @param color
  */
-- (void)setBorderColor:(UIColor*)color;
+- (void)setBorderColor:(UIColor*)color textColor:(UIColor*)textColor ;
 
 /**
  *  设置值

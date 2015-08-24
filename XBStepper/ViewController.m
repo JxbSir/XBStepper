@@ -20,7 +20,7 @@
     
     XBStepper* stepper = [[XBStepper alloc] initWithFrame:CGRectMake(60, 100, 200, 40)];
     [stepper setMaxValue:10 min:-10 now:1];
-    [stepper setBorderColor:[UIColor colorWithRed:0 green:191/255. blue:1 alpha:1]];
+    [stepper setBorderColor:[UIColor grayColor] textColor:[UIColor blackColor]];
     [self.view addSubview:stepper];
 }
 
