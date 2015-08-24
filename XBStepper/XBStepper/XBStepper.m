@@ -12,7 +12,8 @@
 @interface XBStepper ()
 @property(nonatomic,copy)XBStepperCallback  myBlock;
 
-@property(nonatomic,copy)UIColor        *myColor;
+@property(nonatomic,copy)UIColor        *myBorderColor;
+@property(nonatomic,copy)UIColor        *myTextColor;
 
 @property(nonatomic,assign)NSInteger    valueMax;
 @property(nonatomic,assign)NSInteger    valueMin;
@@ -47,10 +48,10 @@
  *  设置UI
  */
 - (void)initUIs {
-    _myColor = [UIColor redColor];
+    _myBorderColor = [UIColor redColor];
     self.backgroundColor = [UIColor whiteColor];
     self.layer.borderWidth = 1;
-    self.layer.borderColor = _myColor.CGColor;
+    self.layer.borderColor = _myBorderColor.CGColor;
     self.layer.cornerRadius = 5;
     self.layer.masksToBounds = YES;
     
@@ -62,7 +63,7 @@
  */
 - (void)AddUIs {
     _txtCount = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
-    _txtCount.textColor = _myColor;
+    _txtCount.textColor = _myTextColor;
     _txtCount.font = [UIFont systemFontOfSize:16];
     _txtCount.textAlignment = NSTextAlignmentCenter;
     [self addSubview:_txtCount];
@@ -82,13 +83,13 @@
 - (UIButton*)tempButton:(CGRect)frame title:(NSString*)title {
     UIButton *btn = [[UIButton alloc] initWithFrame:frame];
     btn.titleLabel.frame = btn.frame;
-    btn.layer.borderColor = _myColor.CGColor;
+    btn.layer.borderColor = _myBorderColor.CGColor;
     btn.layer.borderWidth = 1;
     [btn setTitle:title forState:UIControlStateNormal];
     btn.titleEdgeInsets = UIEdgeInsetsMake(-5, 0, 0, 0);
     [btn.titleLabel setFont:[UIFont systemFontOfSize:30]];
     btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [btn setTitleColor:_myColor forState:UIControlStateNormal];
+    [btn setTitleColor:_myTextColor forState:UIControlStateNormal];
     return btn;
 }
 
@@ -96,8 +97,8 @@
  *  加载数据
  */
 - (void)reloadStepper {
-    [_btnIncrease setTitleColor:_myColor forState:UIControlStateNormal];
-    [_btnDecrease setTitleColor:_myColor forState:UIControlStateNormal];
+    [_btnIncrease setTitleColor:_myTextColor forState:UIControlStateNormal];
+    [_btnDecrease setTitleColor:_myTextColor forState:UIControlStateNormal];
     if (_valueNow >= _valueMax) {
         _valueNow = _valueMax;
         [_btnIncrease setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -131,7 +132,8 @@
 
 #pragma mark - 对外函数
 - (void)setBorderColor:(UIColor*)color textColor:(UIColor*)textColor {
-    _myColor = color;
+    _myBorderColor = color;
+    _myTextColor = textColor;
     self.layer.borderColor          = color.CGColor;
     self.vLineFront.backgroundColor = color;
     self.vLineBack.backgroundColor  = color;
